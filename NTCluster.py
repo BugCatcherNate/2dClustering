@@ -15,9 +15,14 @@ def initialcuster(k, inpoints = [], *args): # finds the random starting position
 	centroids = []
 
 	for i in range(k):
+		randomtemp = randomcluster(inpoints)
+		 # randomly chooses between from points in data set to serve as a starting centroid
+		while randomtemp in centroids:
+			randomtemp = randomcluster(inpoints)
 
-		centroids.append(randomcluster(inpoints)) # randomly chooses between from points in data set to serve as a starting centroid
+		centroids.append(randomtemp)
 
+	print(centroids)
 	s = ("Random initial centroids: " + str(centroids))
 	f.write(str(s)+'\n')
 
@@ -53,8 +58,8 @@ def plot(centroids= [], groups = [], *args): # funciton for plotting resulting g
 				plt.scatter(groups[j][k][0],groups[j][k][1], marker = '.', color = color) # regular points are plotted as dots
 			else:
 				
-				plt.scatter(groups[j][k][0],groups[j][k][1], marker = '+', color = color, s = (100/(j+1))) # centroids are plotted as +, also the size of each centroid decreases so that one centroid marker whill not completely cover another
-	
+				plt.scatter(groups[j][k][0],groups[j][k][1], marker = '+', color = color, s = 100) # centroids are plotted as +, also the size of each centroid decreases so that one centroid marker whill not completely cover another
+	fig.show()
 	fig.suptitle("FinalResult", fontsize=20)
 
 	fig.savefig("FinalResult.jpg")
