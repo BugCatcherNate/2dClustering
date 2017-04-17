@@ -17,7 +17,7 @@ def initialcuster(k, inpoints = [], *args): # finds the random starting position
 	for i in range(k):
 		randomtemp = randomcluster(inpoints)
 		 # randomly chooses between from points in data set to serve as a starting centroid
-		while randomtemp in centroids:
+		while randomtemp in centroids: # while loop ensures that each random centroid is picked only once
 			randomtemp = randomcluster(inpoints)
 
 		centroids.append(randomtemp)
